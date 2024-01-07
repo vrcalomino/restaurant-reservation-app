@@ -18,5 +18,6 @@ public class RestaurantTable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long table_id;
+    private String description;
     private List<String> reservation_ids;
 }
