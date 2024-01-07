@@ -15,4 +15,14 @@ public class TableService implements ITableService {
     public void createTable(RestaurantTable table) {
         tableRepo.save(table);
     }
+
+    @Override
+    public RestaurantTable findById(Long tableId) {
+        return tableRepo.findById(tableId).get();
+    }
+
+    @Override
+    public void addReservation(RestaurantTable table) {
+        tableRepo.save(table);
+    }
 }

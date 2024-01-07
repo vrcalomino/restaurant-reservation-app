@@ -8,4 +8,8 @@ public interface IUserService {
     void registerUser(User user);
 
     User checkCredentials(String username, String password);
+
+    User findById(Long reservationOwnerId);
+
+    void addReservation(User user);
 }

@@ -30,4 +30,14 @@ public class UserService implements IUserService {
         }
         return null;
     }
+
+    @Override
+    public User findById(Long reservationOwnerId) {
+        return userRepo.findById(reservationOwnerId).get();
+    }
+
+    @Override
+    public void addReservation(User user) {
+        userRepo.save(user);
+    }
 }

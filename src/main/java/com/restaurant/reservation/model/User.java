@@ -1,9 +1,6 @@
 package com.restaurant.reservation.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,5 +19,6 @@ public class User {
     private String name;
     private String surname;
     private String password;
-    private Long reservation_id;
+    @OneToOne
+    private Reservation reservation_id;
 }

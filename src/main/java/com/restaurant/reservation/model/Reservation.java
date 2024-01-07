@@ -1,9 +1,7 @@
 package com.restaurant.reservation.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,7 +19,10 @@ public class Reservation {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long reservation_id;
-    private Long table_id;
+    @ManyToOne
+    private RestaurantTable table;
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm", timezone = "UTC-3")
     private Date reservationDate;
-    private Long reservationOwner_id;
+    @OneToOne
+    private User user;
 }
