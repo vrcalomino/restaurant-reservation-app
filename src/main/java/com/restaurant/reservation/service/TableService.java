@@ -12,8 +12,9 @@ public class TableService implements ITableService {
     public ITableRepository tableRepo;
 
     @Override
-    public void createTable(RestaurantTable table) {
+    public RestaurantTable createTable(RestaurantTable table) {
         tableRepo.save(table);
+        return table;
     }
 
     @Override
@@ -22,7 +23,8 @@ public class TableService implements ITableService {
     }
 
     @Override
-    public void addReservation(RestaurantTable table) {
+    public RestaurantTable addReservation(RestaurantTable table) {
         tableRepo.save(table);
+        return table;
     }
 }
