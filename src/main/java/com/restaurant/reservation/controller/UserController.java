@@ -49,7 +49,7 @@ public class UserController {
         }
         User validatedUser = userService.checkCredentials(user.getUsername(), user.getPassword());
         if (validatedUser == null) {
-            return new ResponseEntity<>("Incorrect username or password", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Incorrect username or password", HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(validatedUser.getUser_id(), HttpStatus.OK);
     }
