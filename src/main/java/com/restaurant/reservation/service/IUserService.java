@@ -5,11 +5,11 @@ import com.restaurant.reservation.repository.IUserRepository;
 import org.springframework.stereotype.Service;
 
 public interface IUserService {
-    void registerUser(User user);
+    User registerUser(User user);
 
     User checkCredentials(String username, String password);
 
     User findById(Long reservationOwnerId);
 
-    void addReservation(User user);
+    User addReservation(User user);
 }

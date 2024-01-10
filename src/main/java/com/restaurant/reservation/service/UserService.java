@@ -14,8 +14,9 @@ public class UserService implements IUserService {
     public IUserRepository userRepo;
 
     @Override
-    public void registerUser(User user) {
+    public User registerUser(User user) {
         userRepo.save(user);
+        return user;
     }
 
     @Override
@@ -37,7 +38,8 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public void addReservation(User user) {
+    public User addReservation(User user) {
         userRepo.save(user);
+        return user;
     }
 }
