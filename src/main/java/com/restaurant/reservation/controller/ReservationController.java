@@ -41,7 +41,7 @@ public class ReservationController {
         if (reservation.getTable() == null) {
             return new ResponseEntity<>("No table provided", HttpStatus.BAD_REQUEST);
         }
-        if (reservation.getUser().getUser_id() == null) {
+        if (reservation.getUser() == null) {
             return new ResponseEntity<>("No reservation owner provided", HttpStatus.BAD_REQUEST);
         }
         reservationService.createReservation(reservation);
