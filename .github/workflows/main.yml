@@ -19,5 +19,8 @@ jobs:
           distribution: "adopt"
           java-version: "17"
 
+      - name: Make mvnw executable
+        run: chmod +x mvnw
+
       - name: Run Tests
         run: ./mvnw test
