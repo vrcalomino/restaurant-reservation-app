@@ -5,9 +5,9 @@ import com.restaurant.reservation.repository.IUserRepository;
 import org.springframework.stereotype.Service;
 
 public interface IUserService {
-    User registerUser(User user);
+    User registerUser(User user) throws Exception;
 
-    User checkCredentials(String username, String password);
+    User checkCredentials(String username, String password) throws Exception;
 
     User findById(Long reservationOwnerId);
 

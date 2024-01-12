@@ -17,41 +17,23 @@ public class UserController {
 
     @PostMapping("/register")
     public ResponseEntity register(@RequestBody User user) {
-        if (user == null) {
-            return new ResponseEntity<>("Missing data", HttpStatus.BAD_REQUEST);
+        try {
+            userService.registerUser(user);
+            return new ResponseEntity<>(user.getUser_id(), HttpStatus.CREATED);
+        } catch (Exception exception) {
+            return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
         }
-        if (user.getName() == null) {
-            return new ResponseEntity<>("Missing name", HttpStatus.BAD_REQUEST);
-        }
-        if (user.getSurname() == null) {
-            return new ResponseEntity<>("Missing surname", HttpStatus.BAD_REQUEST);
-        }
-        if (user.getUsername() == null) {
-            return new ResponseEntity<>("Missing username", HttpStatus.BAD_REQUEST);
-        }
-        if (user.getPassword() == null) {
-            return new ResponseEntity<>("Missing password", HttpStatus.BAD_REQUEST);
-        }
-        userService.registerUser(user);
-        return new ResponseEntity<>(user.getUser_id(), HttpStatus.CREATED);
     }
 
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody UserCredentialsDTO user) {
-        if (user == null) {
-            return new ResponseEntity<>("Missing data", HttpStatus.BAD_REQUEST);
+        try {
+            User validatedUser = userService.checkCredentials(user.getUsername(), user.getPassword());
+            return new ResponseEntity<>(validatedUser.getUser_id(), HttpStatus.OK);
+        } catch (Exception exception) {
+            return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
         }
-        if (user.getUsername() == null) {
-            return new ResponseEntity<>("Missing username", HttpStatus.BAD_REQUEST);
-        }
-        if (user.getPassword() == null) {
-            return new ResponseEntity<>("Missing password", HttpStatus.BAD_REQUEST);
-        }
-        User validatedUser = userService.checkCredentials(user.getUsername(), user.getPassword());
-        if (validatedUser == null) {
-            return new ResponseEntity<>("Incorrect username or password", HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<>(validatedUser.getUser_id(), HttpStatus.OK);
+
     }
 
 
