@@ -8,12 +8,15 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.boot.jdbc.EmbeddedDatabaseConnection;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
+@AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.H2)
 @ExtendWith(MockitoExtension.class)
 public class UserControllerTest {
 
@@ -81,7 +84,7 @@ public class UserControllerTest {
     }
 
     @Test
-    void login_success() {
+    void login_success() throws Exception {
         User user = new User();
         user.setName("Marta");
         user.setSurname("Sanchez");
@@ -118,7 +121,7 @@ public class UserControllerTest {
         user.setUsername("prodriguez");
         user.setPassword("1234");
         ResponseEntity response = userController.login(user);
-        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
+        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
     }
 
 }

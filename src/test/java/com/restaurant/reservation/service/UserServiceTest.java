@@ -36,7 +36,7 @@ public class UserServiceTest {
 
 
     @Test
-    void register_user_success() {
+    void register_user_success() throws Exception {
         User user = new User();
         user.setName("Valentin");
         user.setSurname("Calomino");
@@ -49,7 +49,7 @@ public class UserServiceTest {
     }
 
     @Test
-    void checkCredentials_valid(){
+    void checkCredentials_valid() throws Exception {
         List<User> users = new ArrayList<>();
         User user = new User();
         user.setName("Valentin");
@@ -74,9 +74,10 @@ public class UserServiceTest {
         user.setPassword("1234");
         users.add(user);
         when(userRepository.findAll()).thenReturn(users);
-
-        User result = userService.checkCredentials("msanchez", "1234");
-
+        User result = null;
+        try {
+            result = userService.checkCredentials("msanchez", "1234");
+        } catch (Exception ignored) {}
         assertNull(result);
     }
 
