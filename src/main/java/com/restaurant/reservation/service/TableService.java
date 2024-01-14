@@ -5,6 +5,8 @@ import com.restaurant.reservation.repository.ITableRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class TableService implements ITableService {
 
@@ -26,5 +28,10 @@ public class TableService implements ITableService {
     public RestaurantTable addReservation(RestaurantTable table) {
         tableRepo.save(table);
         return table;
+    }
+
+    @Override
+    public List<RestaurantTable> findAll() {
+        return tableRepo.findAll();
     }
 }
