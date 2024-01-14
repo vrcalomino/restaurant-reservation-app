@@ -21,6 +21,10 @@ public class TableControllerTest {
 
     @InjectMocks
     TableController tableController;
+
+    @Mock
+    ITableService tableService;
+
     @Mock
     IUserService userService;
 
