@@ -19,6 +19,7 @@ public class User {
     private String name;
     private String surname;
     private String password;
+    private Boolean isAdmin;
     @OneToOne
     private Reservation reservation_id;
 }

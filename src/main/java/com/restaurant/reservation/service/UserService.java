@@ -32,6 +32,7 @@ public class UserService implements IUserService {
         if (user.getPassword() == null) {
             throw new Exception("Missing password");
         }
+        user.setIsAdmin(false);
         userRepo.save(user);
         return user;
     }
