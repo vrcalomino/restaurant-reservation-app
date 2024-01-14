@@ -32,9 +32,12 @@ public class UserService implements IUserService {
         if (user.getPassword() == null) {
             throw new Exception("Missing password");
         }
-        user.setIsAdmin(false);
-        userRepo.save(user);
-        return user;
+        if (userRepo.findByUsername(user.getUsername()) == null) {
+            user.setIsAdmin(false);
+            userRepo.save(user);
+            return user;
+        }
+        throw new Exception("User already exists, login instead");
     }
 
     @Override
